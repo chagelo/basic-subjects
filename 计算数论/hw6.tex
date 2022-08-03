@@ -1,0 +1,87 @@
+\documentclass[11pt]{article}
+\usepackage{jeffe,handout,multicol,tikz,kgm}
+
+\newcommand{\kgmcomment}[1]{}
+\renewcommand{\gcd}{\mathrm{gcd}}
+
+\begin{document}
+\headers{Math545}{Homework 6}{Due Thurs. Nov. 21, 2019}
+
+%\makeatletter
+%\def\@oddfoot{\hfill \tikz \node[draw] {over} ; }
+%\makeatother
+
+%\newcommand{\seq}[1]{\left\langle #1\right\rangle}
+%
+
+\newcommand{\compicon}%
+{%
+	\begin{tikzpicture}[scale=0.15]%
+		\draw[double] (0,0) rectangle (1,1) ;
+		\begin{scope}[yshift=-5pt]
+			\draw (-0.5, -0.5) rectangle (1.5, 0) ;
+		\end{scope}
+	\end{tikzpicture}
+}
+
+\makeatletter
+\def\@oddfoot{}
+\makeatother
+
+\newcommand{\Leg}[2]%
+{%
+	\left(\frac{#1}{#2}\right)%
+}
+
+\noindent
+\textbf{Directions:} Solve the following problems.  See the course syllabus and the Homework Webpage on the course website for general directions and guidelines.
+
+\begin{enumerate}
+
+\item {}[NT 9-1.1(c)] Use Euler's Criterion to determine whether $3$ is a quadratic residue modulo $11$.  Note: use Euler's Criterion, not quadratic reciprocity or other techniques.
+
+\item {}[NT 9-3.5] Use the Quadratic Reciprocity Law to prove that 
+\[ \left(\frac{3}{p}\right) =
+\begin{cases}
+	1 & \mbox{if $p\equiv 1$ or $11 \pmod{12}$}\\
+	-1 & \mbox{if $p\equiv 5$ or $7 \pmod{12}$}\\
+\end{cases}
+\] 
+for each prime $p$ where $p\ge 5$.
+\item {}[NT 9-4]
+Determine (with proof) whether the following congruences have solutions. 
+\begin{enumerate}
+\item $x^2\equiv 17\pmod{29}$
+\item $3x^2\equiv 12\pmod{23}$
+\item $2x^2\equiv 27\pmod{41}$
+\item $x^2 + 5x\equiv 12\pmod{31}$  \textit{Hint:} complete the square.
+\item $x^2\equiv 19\pmod{30}$
+\end{enumerate}
+
+\item {} A prime $p$ is \emph{lonely} in $a$ if $p \mid a$ but $p^2 \nmid a$.  A number $a$ is \emph{special} if it has no lonely primes.
+\begin{enumerate}
+\item Find a pair of consecutive special numbers.
+\item Prove that there are infinitely many pairs of consecutive special numbers.  \emph{Hint}: given a pair $\{a,a+1\}$ of special numbers, construct another pair $\{b,b+1\}$ of special numbers with $b>a$.
+\item Execute your proof to obtain two more pairs of consecutive special numbers.  Note: the purpose of this part is for you to check your proof in part (b), so we do not want just any old pairs.  We want the ones your proof produces.
+\item Prove that there are no intervals of 4 special numbers.  That is, prove that at least one integer in $\{a,a+1,a+2,a+3\}$ is not special.
+\end{enumerate}
+\emph{Remark}: this naturally begs the question: are there consecutive blocks of special numbers of size $3$?  I do not know the answer to this question, but numerical evidence from sage suggests the answer may be no.
+
+\item{}[NT 9-3.6]
+Let $m$ be an odd, positive integer.  Is it possible that the Jacobi symbol $\Leg{n}{m}$ satisfies $\Leg{n}{m}=1$ but $x^2\equiv n\pmod{m}$ has no solution?  Prove your answer.
+
+\item Let $p$ be a prime.
+\begin{enumerate}
+	\item Let $a$ be an integer such that $p \nmid a$, and let $h$ be the order of $a$.  Show that if $a\not\equiv 1\pmod{p}$, then $1 + a + a^2 + \cdots + a^{h-1} \equiv 0 \pmod{p}$.
+
+	\item  Let $Q = \{a\st \mbox{$1\le a\le p-1$ and $a$ is a quadratic residue}\}$.  Prove that if $p\ge 5$, then $\sum_{t\in Q} t \equiv 0 \pmod{p}$.
+\end{enumerate}
+
+\item Let $A$ be the set of positive integers $a$ such that the set $\{ak-2\st k\in\Z\}$ contains infinitely many perfect squares.  Give a characterization for $A$.
+
+\item \textbf{[Challenge]} Let $p$ be a prime and let $R = \{a\st \mbox{$1\le a\le p-1$ and $a$ is a primitive root}\}$.  Prove that $\sum_{t\in R} t \equiv \mu(p-1) \pmod{p}$, where $\mu(n)$ is the M\"obius function.
+
+
+\end{enumerate}
+
+\end{document}

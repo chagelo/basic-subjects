@@ -1,0 +1,79 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[UTF8]{ctex}
+% Set page size and margins
+% Replace `letterpaper' with `a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\renewcommand{\theequation}{\arabic{section}.\arabic{equation}}
+\newcommand{\setParDis}{\setlength {\parskip} {0.3cm} }
+\newcommand{\nident}{\setlength{\parindent}{0pt}}
+
+
+
+% \title{Your Paper}
+% \author{You}
+
+\begin{document}
+
+\setParDis
+% \nident
+
+\begin{equation}
+    G(x)=a_0+a_1x+\cdots=\sum_{n\ge 0}a_nz^n
+\end{equation}
+
+$G(x)$称为$\{a_0,a_1\cdots\}$的生成函数
+
+\section*{整数拆分}
+
+用$1,5,10,25,50$硬币凑够$n$，那么
+
+\begin{equation}
+    G(x)=(1+x+x^2+\cdots)\cdots(1+x^{50}+x^{100}+\cdots)
+\end{equation}
+
+其中方案数为$x^n$前面的系数，$G(x)$的封闭形式为
+
+\begin{equation}
+    G(x)=\frac{1}{1-z}\frac{1}{1-z^5}\frac{1}{1-z^{10}}\frac{1}{1-z^{25}}\frac{1}{1-z^{50}}
+\end{equation}
+
+比较显然的我们有
+
+\begin{equation}
+    \begin{aligned}
+    G(1)=G(1;x)&=(1+x+x^2+\cdots)=\frac{1}{1-x}\\
+    G(2)=G(1,5;x)&=G(1;x)(1+x^5+x^{10}+\cdots)=G(1)\frac{1}{1-x^5}\\
+    &\cdots\\
+    G(5)=G(1,\cdots;x)&=G(4)(1+x^{50}+x^{100}+\cdots)=G(1,5,10,25;x)\frac{1}{1-x^{50}}\\
+\end{aligned}
+\end{equation}
+
+我们可以发现比如$G(3)=G(2)(1-x^{25})$中$x^n$的系数$G_n(3)=G_n(2)-G_{n-25}(2)$，类似的
+
+\begin{equation}
+    \begin{aligned}
+        G_n(2)&=G_{n-5}(2)+G_n(1)\\
+        &\cdots     \\
+        G_{n}(5)&=G_{n-50}(5)+G_{n}(4)\\
+    \end{aligned}
+\end{equation}
+
+如果硬币不止上面几种，而包含$1,2,3\cdots$，那么
+
+\begin{equation}
+    G(x)=\frac{1}{1-x}\frac{1}{1-x^2}\frac{1}{1-x^3}\cdots
+\end{equation}
+
+$G(x)$中$x^n$前面的系数为方案数
+
+\end{document}

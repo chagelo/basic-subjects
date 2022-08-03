@@ -1,0 +1,891 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[UTF8]{ctex}
+% Set page size and margins
+% Replace `letterpaper' with `a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{color}
+
+\renewcommand{\theequation}{\arabic{section}.\arabic{equation}}
+\newcommand{\setParDis}{\setlength {\parskip} {0.3cm} }
+\newcommand{\nident}{\setlength{\parindent}{0pt}}
+
+
+
+% \title{Your Paper}
+% \author{You}
+
+\begin{document}
+
+\setParDis
+% \nident
+
+\section{素数}
+
+\textbf{1.} 形如 $M_p=2^p-1$ 的数称为梅森数，若$M_p$为素数，那么称之为梅森素数。
+
+\begin{itemize}
+    \item 若$n$为合数，则$M_n$为合数，若$M_p$为素数，则$p$为素数
+    \item $n$为大于 1 的奇数时，$M_n$的所有因子形式为$8k-1$或$8k+1$（2 一定是$p$的二次剩余，可以用 Legendre 符号证明）
+    \item $p$为奇素数时，$M_p$的所有素因子可以表示为$2kp+1$的所有因子形式
+    \item[] 证明：令$q$为$M_p$的任意素因子，由费马小定理得$q\mid 2^{q-1}-1$。所以$q\mid (2^{q-1},2^p-1)=2^{(q-1,p)}-1$，若$(q-1,p)=1$，显然不可能，所以$(q-1,p)=p$，所以$p\mid q-1$，又$q-1$为偶数，所以存在$k$，使$q=2kp+1$
+\end{itemize}
+
+\textbf{2.} 若$n>1$且$a^n-1$为素数，则$a=2$，且$n$为素数
+
+\textbf{3.} 若$2^m+1$为素数，则$m=2^n$。（$F_n=2^{2^n}+1$ 形式的数叫做费马数，它也不一定是素数）
+
+
+\section{余数}
+
+定义
+
+$$\mathbb{Z}/n\mathbb{Z}\ \text{or} \ \mathbb{Z}_n=\{[a]_n: 0\le a\le n-1\}$$
+
+\textbf{1.} $[a]_n$中有一个元素与$n$互素，那么$[a]_n$所有元素与$n$互素；如果$n$是一个素数，那么它的所有的剩余类都与$n$互素
+
+\textbf{2.} $a$ 在模 $n$ 情况下的逆元存在当且仅当$gcd(a, n)=1$，所以$n$是一个素数，$1$到$n-1$之间的所有数都有逆元；正常情况下有$\phi(n)$个存在逆元的数；
+
+\textbf{3.} $\mathbb{Z}_n$ 是一个域当且仅当 $n$是一个素数；
+
+\textbf{4.} $S$是一个完系的充要条件：
+
+\begin{itemize}
+    \item $S$包含$n$个元素
+    \item $S$中任意两个元素不同余
+\end{itemize}
+
+
+\textbf{5.} 若 $a\equiv b\pmod m$，且 $\gcd(k,m)=1$，$k$ 是一个正整数，那么 $ka\equiv kb\pmod m$，更一般的，$ak\equiv bk\pmod m \Leftrightarrow a \equiv b\pmod{\frac{m}{\gcd(k,m)}}$
+
+\textbf{6.} $a\equiv b\pmod{m}$且$a\equiv b\pmod{n}\Leftrightarrow a\equiv b\pmod{lcm(m,n)}$。这个又两种方法证明，第一种唯一素因子分解，第二种$a\equiv b\pmod{m}$等价于$m\mid a-b$，对于$n、lcm(m,n)$同理。那么，对于一个$a\equiv b\pmod{m}$，我们就可以把这个拆成模$m$的所有的素因子的幂的同余式的组。
+
+\subsection{完系}
+
+\textbf{1.} 若 $a_i (1\le n)$ 是一个完系，$k, m\in \mathbb{Z}, (m, n)=1$，则$k + ma_i(1\le n)$ 也构成一个模 $n$ 的完系
+
+\textbf{2.} 若 $a_i (1\le n)$ 是一个完系，则$\sum_{i\le n}a_i=n(n+1)/2\pmod n$，右边这个结果最终要么是 $n/2$，要么是0
+
+\subsection{缩系}
+
+$n$ 是正整数，$S$ 是缩系的充要条件是
+
+\begin{itemize}
+    \item S包含$\varphi (n)$个元素
+    \item S中任意两个元素不同余
+    \item S中任意元素与n互素
+\end{itemize}
+
+
+\textbf{1.} 设 $a_1,a_2,\cdots,a_{\phi(m)}$ 为一缩系，且$\gcd(m, k)=1$，那么$ka_1,ka_2,\cdots,ka_{\phi(m)}$也组成一个缩系。否则若$ka_i\equiv ka_j\pmod m$，因为$\gcd(m, k)=1$，所以$a_i\equiv a_j\pmod m$，矛盾。
+
+\subsection{线性同余方程}
+
+形如$ax \equiv c \pmod b$的方程被称为线性同余方程(Congruence Equation)。
+
+\textbf{1.} 方程$ax+by=c$ 与方程 $ax \equiv c \pmod b$ 是等价的，有整数解的充要条件为 $\gcd(a,b) \mid c$。
+
+\textbf{2.} 若$d=\gcd(a,b)$,且$d\mid c$, $t$为原方程的解，则所有的解可以表示为$\{t+k\dfrac{n}{d}\mid k\in \mathbb{Z}\}$，也是$\dfrac{a}{d}x\equiv \dfrac{b}{d}\pmod{\dfrac{n}{d}}$的解。所有这些解模$n$最后会落到$n$的完全剩余系的$d$个元素之上。$t, t+n/d, t+2n/d, \cdots, t+(d-1)n/d$就是$d$个这样的解。其中最小正整数解为$x=(x \bmod t+t) \bmod t$，其中 $t=\dfrac{b}{\gcd(a,b)}$。
+
+\subsection{Euler's}
+
+\textbf{1.} 若 $(k,m)=1$，则 $k^{\phi(m)}\equiv 1\pmod m$，证明：由 $\prod_{i=1}^{\phi(m)}(ka_i)\equiv \prod_{i=1}^{\phi(m)}a_i\pmod m$，由$(a_i,m)=1$，那么$k^{\phi(m)}\equiv 1\pmod m$，证毕。
+
+\textbf{2. 费马小定理：}若$p$为素数，那么对所有整数$a$有，$a^p\equiv a\pmod p$，或$a^{p-1}\equiv 1\pmod p$
+
+\textbf{3.} $p$ 是一个素数，$\phi(p^k)=p^k-p^{k-1}$，证明先考虑 0 到 $p^k-1$，有多少$p$的倍数，然后减一下
+
+\textbf{4.} 任意整数 $n$，有 $\sum_{d\mid n}\phi(n)=n$，因为 $n=\sum_{d\mid n}\phi(n/d)=\sum_{d\mid n}\phi(d)$，$\phi(n/d)$ 表示与 $n$ 的最大公因数为 $d$ 的数的个数，关于 $n=\sum_{d\mid n}\phi(n/d)$，我们想要说明它刚好包括所有 $n$ 个数，因为没有任意一个数字使得 $gcd(n, a)=d_1,gcd(n,a)=d_2$ 使得这个数字进入两个不同的划分集合 $d_1, d_2$，所有可以恰好包括所有数字。还需要说明 1 到 $n$ 内的任意一个数字都与 $n$ 有一个公共因子，比较显然，最起码是 1
+
+\textbf{5.} $\not\equiv$
+
+\textbf{note: }欧拉定理要求$a、p$必须互素，注意到使用缩系证明过程中，给一个缩系乘以一个与$p$互素的数$a$，得到的集合依然是一个缩系，如果与$p$不互素，显然就会出现问题。而费马小定理中要求$p$是一个素数，更加严格。
+
+
+\subsection{原根}
+
+次数为$\varphi(p)$的数称为$p$的原根，一个推论是次数为$p-1$的数，一定是$p$的原根（$d\mid \varphi(p)\le p-1$
+
+\textbf{1.} $a$模$m$的次数是$l$，那么对于正整数$n$，$l\mid n$的充要条件是$a^n\equiv 1\pmod m$
+
+\textbf{2.} 若 $a$ 与 $m$ 互质，那么 $a^b\equiv a^{b\mod \varphi(m)}\pmod m$，因为
+
+\begin{equation}
+    a^b = a^{\varphi(m)\lfloor b/\varphi(m) + b\mod{\varphi(m)}}\equiv a^{b\mod{\varphi(m)}}\pmod m
+    \nonumber
+\end{equation}
+
+若 $a$、$m$ 不互素，$a^b\equiv a^{b\mod \varphi(m) + \varphi(m)}\pmod m$
+
+\textbf{3.} 若 $a$ 模 $m$ 的次数是 $\delta$，则 $\{a^0,a^1,\cdots,a^{\delta -1}\}$ 模 $m$ 不同余，注意这个集合可能不包含所有与$m$互素的元素（但是是一个子集），与$m$互素的元素数量为$\varphi(m)\ge \delta$，若$\delta = \varphi(m)$也就是说$a$模$m$的原根，这是模$m$的缩系
+
+证明：假如有两个整数 $k, l$ 满足 $a^k\equiv a^l\pmod m,0\le k < l < \delta$，由于 $gcd(a,m)=1$，所以 $a^{l-k}\equiv 1\pmod m$，$l-k<\delta$，这与 $\delta$ 最小矛盾，原命题成立。
+
+所以如果 $a$ 是一个 $m$ 的原根，那么 $\{a^0,a^1,\cdots,a^{\varphi(m)-1}\}$ 是一个缩系。因为$(a,m)=1$,所以$(a^i,m)=1$.
+
+\textbf{4.} 若 $a$ 模 $m$ 的次数为 $r$, 设 $\lambda >0$，$a^{\lambda}$ 模 $m$的次数为$r/gcd(\lambda,r)$（简单的想只需要需要$r\mid \lambda t$，取最小的$t$）
+
+证明：$r\mid \lambda t$，所以$\frac{r}{(\lambda,r)}\mid \frac{\lambda t}{(\lambda,r)}$，且$(\frac{r}{(\lambda,r)},\frac{\lambda}{(\lambda,r)})=1$，所以$\frac{r}{(\lambda,r)}\mid t$。又$(a^{\lambda})^{\frac{r}{(\lambda,r)}}\equiv (a^{r})^{\frac{\lambda}{(\lambda,r)}}\pmod m$，所以$t\mid \frac{r}{(\lambda,r)}$，所以$t=\frac{r}{(\lambda,r)}$
+
+所以说如果$a$是$m$的一个原根（即$r=\varphi(m)$），那么$a^{\lambda}$是模$m$的原根的充要条件是$(\lambda,\varphi(m))=1$。如果找到了一个模$m$的原根$a$，对于任意$k$，只要$k$与$\varphi(m)$互质，那么$a^k$就是模$m$的一个原根。所以只要我们找到一个模$m$的原根，我们就可以找到其他所有原根。
+
+\textbf{5.} $a$模$m$的次数是$s$，$b$模$m$的次数是$t$，若$(s,t)=1$，则$ab$模$m$的次数是$st$
+
+\textbf{6.} $a$模$m$的次数是$\delta$，那么满足$(\lambda,\delta)=1,0<\lambda\le\delta$，且$a^{\lambda}$模$m$的次数为$\delta$，这样的$\lambda$有$\varphi(\delta)$个。由4.很容易证。
+
+如果$a$是模$m$的原根，那么次数为$\varphi(m)$，那么如果$(\lambda,\varphi(m))=1$，那么$a^{\lambda}$是一个原根，这样的满足$(\lambda,\varphi(m))=1$的$\lambda$一共有$\varphi(\varphi(m))$个。
+
+\textbf{7.} 若$\gcd(a,n)=1$，$r$是$a$模$n$的阶，那么$a^s\equiv a^t\pmod{n}$当且仅当$s\equiv t\pmod{r}$
+
+\textbf{8.} 若$g$是模$n$的原根，那么$g^x\equiv g^y\pmod{n}$当且仅当$x\equiv y\pmod{\varphi(n)}$
+
+\textbf{9.} $n$是一个有原根的正整数，假设$\gcd(a,n)=1$，则$x^k\equiv a\pmod{n} (k\ge 2) $有解当且仅当 
+
+\begin{equation}
+    a^{\varphi(n)/\gcd(k, \varphi(n))}\equiv 1\pmod{n}
+\end{equation}
+
+\textbf{10.} $p$是一个素数，$\gcd(a,p)=1$，$a$是一个$p$的$k$次剩余，当且仅当
+
+\begin{equation}
+    a^{(p-1)/\gcd(k,(p-1))}\equiv 1\pmod{p}
+\end{equation}
+
+\textbf{11.} 若$m$为$2,4,p^k,2p^k$（$p$为奇素数）四者之一时，原根才存在。
+
+ 注：这里还有一些 Jacobi 符号在$k$次剩余上的拓展
+
+\subsection{Carmichael's}
+
+\textbf{1.Carmichael's 定理：}对任意的$a$，$a,n$为正整数，且互素，那么$a^{\lambda(n)}\equiv 1\pmod n$，$\lambda(n)$为 Carmichael 函数。$\lambda(n)$为满足该同余式的最小正整数，它总是小于等于$\phi(n)$，$\lambda(n)$ 的值称为 $a$ 模 $n$ 的 $\text{order}$.
+
+\textbf{2.}
+
+$$n=p_1^{r_1}p_2^{r_2}\cdots$$
+
+那么$\lambda(n)=lcm(\lambda(p_1^{r_1}),\lambda(p_2^{r_2}),\cdots)$
+
+\subsection{中国剩余定理}
+
+\textbf{1.} 同余方程$a_1x_1+\cdots+a_nx_n+b\equiv 0\pmod m$有解的充要条件为$(a_1,\cdots,a_n,m)\mid b$，且模$m$情况下有$m^{n-1}(a_1,\cdots,a_n,m)$组不同的解（解所有的元都在模 $m$ 的剩余系下）。
+
+\textbf{2.} $M=m_1\cdots m_n$，$m1,\cdots,m_n$两两互素，$f(x)=a_0+a_1x+\cdots+a_nx^n$。那么$x_0$是$f(x)\equiv 0\pmod M$的解当且仅当$x_0$是下面方程组的解
+
+\begin{equation}
+\begin{cases}
+f(x)&\equiv 0\pmod {m_1} \\
+&\cdots	\\
+f(x)&\equiv 0\pmod {m_n}\\
+\end{cases}    
+\end{equation}
+
+充分性比较显然，必要性由中国剩余定理可得（注意和$0$同余）。
+
+\subsection{二次剩余}
+
+\textbf{1.} $p$是一个奇素数，$a$不能被$p$整除，那么$x^2\equiv a\pmod{p}$要么没解，要么有两个解。
+
+证明：若有$x^2\equiv y^2\equiv a\pmod{p}$，那么$p\mid (x+y)(x-y)$，所以$x\equiv y\pmod{p}$ or $x\equiv -y\pmod{p}$，这也是一个比较有意思的结论。
+
+\textbf{2.} 二次剩余和二次非剩余的数量均为$(p-1)/2$
+
+寻找二次剩余最简单的方法就是枚举$1^2,2^2,\cdots,\frac{(p-1)^2}{2},\frac{(p+1)^2}{2},\cdots,(p-1)^2\pmod{p}$，并且发现如果有解，$x^2\equiv (p-x)^2\pmod{p}$，即$x^2、(p-x)^2$指向同一个二次剩余，所以只需计算$x^2,1\le x\le (p-1)/2$。另外需要证明不存在$x,y\in[1,(p-1)/2]$指向同一个二次剩余。
+
+\textbf{3.} 欧拉判别条件：$p$是一个奇素数，$\gcd(a,p)=1$，那么$a$是一个二次剩余当且仅当$a^{(p-1)/2}\equiv 1\pmod{p}$
+
+由欧拉定理有
+
+\begin{equation}
+    (a^{(p-1)/2}-1)(a^{(p-1)/2}+1)\equiv a^{p-1} - 1\equiv 0 \pmod{0}
+\end{equation}
+
+所以$a^{(p-1)/2}\equiv 1\pmod{p}$或$a^{(p-1)/2}\equiv -1\pmod{p}$
+
+证明：充分性，$a$是一个二次剩余，那么存在$x_0$使$x_0^2\equiv a\pmod{p}$，又由欧拉定理
+
+\begin{equation}
+    a^{(p-1)/2}\equiv (x^2)^{(p-1)/2}\equiv 1\pmod{p}
+\end{equation}
+
+必要性，假设$g$是模$p$的原根，那么存在$t$使$g^t\equiv a\pmod{p}$（原根构造缩系），那么
+
+\begin{equation}
+    g^{t(p-1)/2}\equiv a^{(p-1)/2}\equiv 1\pmod{p}
+    \nonumber
+\end{equation}
+
+从而
+
+\begin{equation}
+    t(p-1)/2\equiv 0\pmod{p-1}
+\end{equation}
+
+所以t是一个偶数，所以
+
+\begin{equation}
+    (g^{t/2})^2\equiv g^t\equiv a\pmod{p}
+\end{equation}
+
+所以$a$是一个模$p$的二次剩余
+
+\textbf{4.} 令$n=2^ep_1^{e_1}\cdots p_l^{e_l}$为n的素因子分解，假如$\gcd(a,n)=1$，那么$x^2\equiv a\pmod{n}$有解的充要条件为
+
+\begin{itemize}
+    \item 如果$e>1$（否则不考虑），若$e=2$，那么$a\equiv 1\pmod{4}$；若$e\ge 3$，那么$a\equiv 1\pmod{8}$
+    \item 对任意的$i (1\le i\le k)$，都有$a^{(p_i-1)/2}\equiv 1\pmod{p_i}$
+\end{itemize}
+
+
+\subsection{Legendre 符号和 Jacobi 符号}
+
+\noindent $p$是一个奇素数，$a$是一个整数，假设$\gcd(a,p)=1$，那么$Legendre\ symbol, \left(\dfrac{a}{p}\right)$，定义为
+
+\begin{equation}
+    \left(\frac{a}{p}\right)=
+    \begin{cases}
+    =1,&\text{如果$a$是模$p$的二次剩余}\\
+    =-1,&\text{如果$a$是模$p$的非二次剩余}\\        
+    \end{cases}
+\end{equation}
+
+需要注意，一般情况下，考虑$\gcd(a,p)=1$，如果$p$是$a$的因子，这个结果等于0，见英文版 wiki。
+
+\textbf{1.} 由上面的欧拉判别条件有$\left(\dfrac{a}{p}\right)\equiv a^{(p-1)/2}\pmod{p}$，所以这是$Legendre\ symbol$形式的欧拉判别条件。
+
+\textbf{2.} 若$a\equiv b\pmod{p}$，那么$\left(\dfrac{a}{p}\right)=\left(\dfrac{b}{p}\right)$，
+
+\textbf{3.} $\left(\dfrac{ab}{p}\right)=\left(\dfrac{a}{p}\right)\left(\dfrac{b}{p}\right)$，由上面性质 1. 可以证明。这也表示这个符号是一个（完全）积性函数。
+
+\textbf{4.} $\left(\dfrac{a^2}{p}\right)=1$，$因为x^2\equiv a^2\pmod{p}$。
+
+由上面四条性质我们可以得到
+
+\begin{itemize}
+    \item 二次剩余的逆元依然是二次剩余，非二次剩余的逆元依然是非二次剩余
+    \item 两个二次剩余或非二次剩余的积是二次剩余
+    \item 二次剩余和非二次剩余的积是非二次剩余
+\end{itemize}
+
+\textbf{5.} $p$是一个奇素数，那么对所有整数
+
+\begin{equation}
+    \left(\frac{-1}{p}\right)=
+    \begin{cases}
+        1&\text{if $p\equiv 1\pmod{4}$}\\
+        -1&\text{if $p\equiv 3\pmod{4}$}\\
+    \end{cases}
+\end{equation}
+
+由$Legendre\ symbol$形式的欧拉判别条件很容易证明。这个结论可以用来判断一些特殊的二次剩余方程是否有解。
+
+
+\subsubsection{高斯引理}
+
+\textbf{1.} $p$为奇素数，假设$\gcd(a,p)=1$，$\omega$为
+
+\begin{equation}
+    \left\{1a,2a,3a,\cdots,\frac{p-1}{2}a\right\}
+    \nonumber
+\end{equation}
+
+这里面模$p$为负数（或者大于$p/2$）的数的数量
+
+\begin{equation}
+    \left(\frac{a}{p}\right)=(-1)^{\omega}
+\end{equation}
+
+注：上面那个集合里面，两两不同余，它们模$p$落到一个完系中，而模$p$又一个这样的特殊的完系
+
+\begin{equation}
+    \left\{0, \pm 1, \pm 2,\cdots,\pm \frac{p-1}{2}\right\}
+    \nonumber
+\end{equation}
+
+但是显然最上面那个集合里面的元素模$p$不可能等于 0，所以可能的结果会落到这个完系除 0 外的集合上。
+
+
+\textbf{2.} 若$p$是奇素数，那么
+
+\begin{equation}
+    \left(\frac{2}{p}\right)=\left(-1\right)^{(p^2-1)/8}=
+    \begin{cases}
+        1, &\text{if }p\equiv \pm 1\pmod{8}\\
+        -1,&\text{if }p\equiv \pm 3\pmod{8}\\
+    \end{cases}
+    \nonumber
+\end{equation}
+
+\subsubsection{二次互反律}
+
+\textbf{1.} 如果$p,q$是两个不同的奇素数 
+
+\begin{itemize}
+    \item $\displaystyle \left(\frac{p}{q}\right)=\left(\frac{q}{p}\right)$, if one of $p,q\equiv 1~(\mathrm{mod}~4)$
+    \item $\displaystyle \left(\frac{p}{q}\right)=-\left(\frac{q}{p}\right)$, if both $p,q\equiv 3(~\mathrm{mod}~4)$
+    \item $\displaystyle \left(\frac{p}{q}\right)\left(\frac{q}{p}\right)=(-1)^{(p-1)(q-1)/4}$，把左边两项中任意一项直接移动到右边，也是成立的
+\end{itemize}
+
+\subsubsection{Jacobi 符号}
+
+$a$是一个任意整数，$n$是一个正奇数，$n=p_1^{\alpha_1}\cdots p_k^{\alpha_k}$，那么$Jacobi$符号定义为
+
+\begin{equation}
+    \left(\frac{a}{n}\right)=\left(\frac{a}{p_1}\right)^{\alpha_!}\cdots \left(\frac{a}{p_k}\right)^{\alpha_k}
+    \nonumber
+\end{equation}
+
+如果$\gcd(a,n)\neq 1$，那么上面的左边等于 0（左边是 Jacobi 符号，右边是 Legendre 符号）。
+
+$m,n$是任意的正的奇数，$\gcd(a,n)=\gcd(b,n)=1$，那么
+
+\begin{itemize}
+    \item $a\equiv b~(\mathrm{mod}~n)$，那么$\displaystyle \left(\frac{a}{n}\right)=\left(\frac{b}{n}\right)$
+    \item $\displaystyle \left(\frac{ab}{n}\right)=\left(\frac{a}{n}\right)\left(\frac{b}{n}\right)$
+    \item $\gcd(m,n)=1$，那么$\displaystyle \left(\frac{a}{mn}\right)\left(\frac{a}{m}\right)=\left(\frac{a}{n}\right)$
+    \item $\displaystyle \left(\frac{1}{n}\right)=1$
+    \item $\displaystyle \left(\frac{-1}{n}\right)=(-1)^{(n-1)/2}$
+    \item $\displaystyle \left(\frac{2}{n}\right)=(-1)^{(n^2-1)/8}$
+    \item $\gcd(b,n)=1$，那么$\displaystyle \left(\frac{ab^2}{n}\right)=\left(\frac{a}{n}\right)$
+    \item $\gcd(m,n)=1$，那么$\displaystyle \left(\frac{m}{n}\right)\left(\frac{n}{m}\right)=(-1)^{(m-1)(n-1)/4}$，或者 $\displaystyle \left(\frac{m}{n}\right)=(-1)^{(m-1)(n-1)/4}\left(\frac{n}{m}\right)$
+\end{itemize}
+
+对于最后一条性质的后面部分，如果$m$是偶数不能直接用，需要将 2 的幂提出来，之后再用。
+
+需要注意，与$Legendre$符号不同的是，$\displaystyle \left(\frac{a}{n}\right)$如果结果为-1，那么$a\equiv x^2~(\mathrm{mod}~n)$可以确定无解，但是如果为-1，那么可能无解可能有解。
+
+\subsection{连分数}
+
+\begin{equation}
+    [a_0,a_1,\cdots,a_n]=\frac{p_n}{q_n}
+\end{equation}
+
+\begin{equation}
+    \begin{aligned}
+    &p_0=a_0, p_1=a_1a_0+1,
+    p_n=a_np_{n-1}+p_{n-2} &(2\le n\le N)\\
+    &q_0=1,q_1=a_1,
+    q_n=a_nq_{n-1}+q_{n-2} &(2\le n\le N)\\
+    \end{aligned}
+    \nonumber
+\end{equation}
+
+
+关于这个序列$a$，比如$a/b$的连分数序列，就是用欧几里得算法每一步迭代过程中的$a/b$(商)。
+
+1. 任意有限简单连分数（finite simple continued fraction）一定可以表示为一个有理数。相反，任意有理数一定可以表示为一个有限简单连分数。
+
+2. 任意无理数可以唯一的写成一个无限简单连分数，相反，一个无限简单连分数是一个无理数。
+
+3. 任意具有周期性简单连分数是一个二次无理数（指的是整系数一元二次方程的根），相反，任意二次无理数标识为连分数具有周期性。
+
+4. 一个非完全平方数的平方根的连分数是有周期的，并且若循环节以$a_0$开始，那么结尾一定是$2a_0$
+
+\subsubsection{name}
+
+1. $\sqrt{2}=[1,\overline{1}],~\sqrt{3}=[1,\overline{1,2}],~(\sqrt{5}-1)/2=[0,\overline{1}],~(\sqrt{5}+1)/2=[1,\overline{1}]$ 
+
+\subsection{丢番图方程}
+
+\subsubsection{Pell 方程}
+
+设 $N$ 为非平方自然数，那么$x^2-Ny^2=1$有无穷自然整数解
+
+\section{大整数分解}
+
+\subsection{CFRAC, QS and NFS}
+
+下面要介绍的几种分解方法基于这样一种重要的事实（起源于\href{https://en.wikipedia.org/wiki/Fermat%27s_factorization_method}{\color{blue}Fermat's method}）
+
+对于大整数 $N$，如果有两个整数$x,y$满足
+
+\begin{equation}
+    x^2\equiv y^2\pmod{N}, 0 < x < y < N, x\neq y, x+y\neq N
+\end{equation}
+
+那么$\gcd(x-y,N), \gcd(x+y,N)$就可能是$N$的非平凡因子。要找到上面的同余式，那么就需要找到
+
+\begin{equation}
+    \left(x_i=\prod{p_k^{e_k}}\right)\equiv \left(y_i=\prod{p_j^{e_j}}\right)\pmod{N}
+\end{equation}
+
+这样的同余式的集合，然后用乘法将同余符号两边凑成平方。
+
+CFRAC, QS, NFS 三种方法的出发点都是去寻找
+
+\begin{equation}
+    x_k^2\equiv (-1)^{e_0}p_1^{e_{1k}}\cdots p_m{e_{mk}}\pmod{N}
+\end{equation}
+
+$p_i$ 是分解基（$\text{FB}$），通过乘法凑出平方，即
+
+\begin{equation}
+    \sum_{1\leq k\leq n}\epsilon_k(e_{0k},\cdots,e_{mk})\equiv (0,\cdots, 0)\pmod{2}
+\end{equation}
+
+令$x=\prod_{1\leq k\leq n}x_{k}^{\epsilon_{k}}, y=(-1)^{v_0}p_1^{v_1}\cdots p_m^{v_m}$, 且$\sum_{k}\epsilon_k(e_{0k}, \cdots, e_{mk})=2(v_0,\cdots,v_m)$, 那么就有$x^2\equiv y^2~(\mathrm{mod}~N)$
+
+\subsubsection{CFRAC}
+
+
+\begin{equation}
+    W_i=P_i^2-Q_i^2kN\Rightarrow P_i^2\equiv W_i \Leftrightarrow x_i^2\equiv (-1)^{e_0}\cdots p_m^{e_m}\pmod{N}
+\end{equation}
+
+$P_i/Q_i$是$\sqrt{kN}$的连分数逼近，$k$是任意选的一个数字，使$kN$不是一个平方数。
+
+
+\subsubsection{Quadratic sieve}
+
+
+定义
+
+\begin{equation}
+    Q(x)=(x+\left\lfloor\sqrt{N}\right\rfloor)^2-N
+\end{equation}
+
+那么
+
+\begin{equation}
+    Q(x) = (x+\left\lfloor\sqrt{N}\right\rfloor)^2-N\equiv (x+\left\lfloor\sqrt{N}\right\rfloor)^2\pmod{N}
+\end{equation}
+
+只需要$Q(x)$是一个平方数
+
+二次筛法中，没有直接找$Q(x)$，而是先找一系列能被分解基完全分解的数（能被完全分解就成为光滑）。只需要寻找一系列$Q(x_i)$
+
+\begin{equation}
+    \sum_{i}Q(x_i)\equiv \sum_{i}(x_i+\left\lfloor\sqrt{N}\right\rfloor)^2\pmod{N}
+\end{equation}
+
+使得上面等式的左边是一个平方数，即在分解基下分解结果每个质因子的幂都是偶数。（本质是一个解线性方程的过程）
+
+假如有个序列$X=\{0,\cdots,n\}$，对于分解基 F，我们想要求出所有关于分解基的光滑的$Q(X_i)$（在这之后在考虑线性组合的问题）。如果$Q(X_i)$是光滑的，对于每个分解基 F 中的质数p，下面的方程都需要满足。
+
+\begin{equation}
+    Q(X_i)\equiv (X_i+\left\lfloor\sqrt{N}\right\rfloor)^2-N\equiv 0\pmod{p}~\text{for each p}
+\end{equation}
+
+由于$p$都很小，所以方程很好解，得到$X_i\equiv a~(\mathrm{mod}~p)$，然后将$Q(X)$中$a,a+p,a+2p,\cdots$位置的数除以$p$（值得注意的是对于$p>2$，$X_i$有两个解）。这样得到的光滑数关于分解基中每个质数的幂都是 0 或者 1。那些$Q(X)$中值为 1 的数就对应一个光滑数。
+
+然后就是一个解线性方程组的问题，即怎么组合这些光滑数分解基表达情况下，幂的组合是偶数。\href{https://zh.wikipedia.org/wiki/%E4%BA%8C%E6%AC%A1%E7%AF%A9%E9%81%B8%E6%B3%95}{\color{blue}wiki}给出了一个很好的例子 
+
+\subsection{Polland's rho and p - 1 Methods}
+
+\subsubsection{Polland's p - 1 Method}
+
+如果能够找到一个与大合数$n$不互质的数$p$，那么可以直接求$\gcd(n,p)$求得$n$的一个因子。 
+
+
+如果素因子 $p\mid n, n=pq$，那么$a^{p-1}\equiv 1 \mod{p}$，假如我们有$M=(p-1)x$（这里的$M$就是下面的$k$），那么对于满足$\gcd(a,p)=1$的$a$，$a^M=(a^{p-1})^x\equiv 1\pmod{p}$，那么$p\mid a^M-1$，又$p\mid n$，则有$p\mid\gcd(n,a^{M-1}-1)$。这样就可能找到一个$n$的平凡因子。一般$a$为2。
+
+比如对于$k=\mathrm{lcm}(1,2,\cdots,B)$，$B$多大才比较合适呢。我们希望$\gcd(a^k-1,n)\neq 1$，对于$a^k-1$它的因子有$k$的所有素因子（不考虑特殊情况），那么如果$k$包含$n$的因子，那就很好。所以我猜测，$B$最好应该大于等于$n$所包含的最小因子。
+
+下面是算法执行的步骤
+
+\begin{itemize}
+    \item 从 1 到 $n$ 中选择一个数 $a$，选择一个合适的$B$，$B$越大找到$N$因子的可能性越大，但算法需要的时间可能越久
+    \item 计算$k$，$k$计算方式很多，比如可以是$\mathrm{lcm}(1,2,\cdots,B)$，可以是$B!$，又比如可以是
+    \begin{equation}
+            k=\prod_{p~prime, 1\le p \le B}p^{\left\lfloor\log B/\log p\right\rfloor}
+    \end{equation}
+    前面两种计算方式好像有缺点，比如$p-1$的分解包含一个素数的高次幂，那么就可能会失败。
+    \item 计算$d=\gcd(a,n)$，$d\neq 1$，返回$d$
+    \item 计算$e=\gcd(a^k-1,n)$，若$e=1$则增大$B$，若$e=n$，则重新选择$a$，否则返回$e$
+\end{itemize}
+
+\subsubsection{Polland's rho Method}
+
+\subsection{Elliptic Curve Method}
+
+\begin{equation}
+    y^2=x^3+ax+b\pmod{p}
+\end{equation}
+
+$F_p$是一个定义在整数集合$\{0,1,2,\cdots,p-1\}$上的域，$a,b\in F_p$
+
+\subsubsection{椭圆曲线}
+
+对于椭圆曲线$y^2=x^3+ax+b$上的点$P=(x_p,y_p),Q=(x_q,y_q)$，定义$P+Q=R=(x_r,y_r)$，如图
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{../image/ECM.png}
+\end{figure}
+
+
+\begin{equation}
+\begin{cases}
+    \lambda = (y_p-y_q)/(x_p-x_q)~&\text{if $P\neq Q$}\\
+    \lambda = (3x_p^2+a)/2y_p~&\text{if $P= Q$}\\
+\end{cases}
+\end{equation}
+
+可以求得$R$
+
+\begin{equation}
+\begin{cases}
+    x_r=\lambda^2-x_p-x_q\\
+    y_r=\lambda(x_p-x_r)-y_p\\
+\end{cases}
+\end{equation}
+
+如果是在有限域$F_p$情况下，那么就对所有操作取余。
+
+\begin{equation}
+    \begin{cases}
+        \lambda = (y_p-y_q)/(x_p-x_q) \pmod{p}~ & \text{if $P\neq Q$}     \\
+        \lambda = (3x_p^2+a)/2y_p\pmod{p}~   & \text{if $P=Q$} \\
+    \end{cases}
+\end{equation}
+
+\begin{equation}
+    \begin{cases}
+        x_r=\lambda^2-x_p-x_q\pmod{p}    \\
+        y_r=\lambda(x_p-x_r)-y_p\pmod{p} \\
+    \end{cases}
+\end{equation}
+
+
+可以求得$R$
+
+对于乘法$nP=P+(n-1)P$，如此不断递归，$2P=P+P$
+
+\begin{itemize}
+    \item 椭圆曲线上进行$Q-P$的减法运算，只需要将$P(x_p,y_p)$变为$-P(x_p,-y_p)$，然后做$Q$和$-P$的加法即可
+    \item 在一个有限域$F_p$的情况下，单位元$O_E$定义为无穷远点，假设阶为$k$，那么对任意$P$，$kP=O_E$，且$P+O_E=P$
+    \item 加法可以视作代数里面的乘法，$P$乘以常数$c$，可以视作代数里面对$P$取幂，$xP=D$可以视作$P^x= D$
+\end{itemize}
+
+
+\subsubsection{Elliptic Curve Method}
+
+下面的所有运算都在$Z_p$中
+
+\begin{enumerate}
+    \item 随机取$k=B!$或$k=\mathrm{lcm}(2,3,5,7,\cdots)$
+    \item 取$a,x,y\in Z_p$，计算$b=y^2-x^3-ax$. 重复 2. 直到$\gcd(4a^3+27b^2,n)\neq 1$. 这样就得到椭圆曲线 $E: y^2=x^3+ax+b$和其上一点$P(x,y)$
+    \item 计算$kP$，每次计算，我们要么会得到一个新的点，要么会得到$n$的一个因子. 如果$kP\equiv \mathcal{O}_E\pmod{n}$ (这个的意思就是$\lambda$不存在，$\lambda$是一个求逆元的过程，所以实际上是逆元不存在)，设此时$kP$的$\lambda$的分母是$m$，计算$\gcd(m,n)$，这个结果一定是$n$的非平凡因子
+    \item 如果 3. 没有得到$n$的因子那么重复 2. (也可以进一步增大$B$)
+\end{enumerate}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{../image/ECM_example1.png}
+\end{figure}
+
+\section{离散对数}
+
+给定$a,g,p\in\mathbb{N}$，计算满足$a^x\equiv g\pmod{p}$的$x$
+
+
+$g$是$\mathbb{Z}_p$对应循环群的生成元，也就是原根，其阶数为$\varphi(p)$；$\mathbb{Z}_p$是一个循环群，当且仅当$p=1,2,4,p^k,2p^k(k>0)$
+
+最朴素的方法就是
+
+\begin{itemize}
+    \item 计算$g^2(mod~p),g^3(mod~p)\cdots$
+    \item 如果$g^k(mod~p)=a$就结束
+    \item 复杂度是$p/2$
+\end{itemize}
+
+\subsection{Shanks' Baby-Step Giant-Step Algorithm}
+
+令$s=\left\lfloor\sqrt{n}\right\rfloor$，令$k=im+j,i,j\in\{0,1\cdots,m-1\}$，由于$a\equiv g^k\pmod{p}\equiv g^{im+j}$，从而$g^j\equiv ag^{-im}\pmod{p}$；搜索$i,j$，找到满足$g^j\equiv ag^{-im}\pmod{p}$的$i，j$,然后就得到$x=im+j$
+
+对于$y\equiv a^x\equiv~\mathrm{mod}~n$
+
+\begin{itemize}
+    \item $s=\left\lfloor n\right\rfloor$
+    \item $y$就是给定的$g$，计算$(ya^r,r),r=0,\cdots,s-1$，$S=\{(y,0),(ya,1),(ya^2,2),\cdots,(ya^{s-1},s-1)~\mathrm{mod}~n\}$
+    \item 计算$(a^{ts},ts),t=1,\cdots,s$，$T=\{(a^s,1),(a^{2s},2),(a^{s^2},s)~\mathrm{mod}~n\}$
+    \item 将$S,T$按第一项排序，然后寻找$ya^r=a^{ts}$，计算$x=ts-r$即为答案$\log_a y~(\mathrm{mod}~n)$
+\end{itemize}
+
+复杂度$\sqrt{n}\log{n}$，用 hash 存储 $S$ 然后第二个表边计算边查询则是 $\sqrt{n}$，如果用 map 存储也是$\sqrt{n}\log{n}$。
+
+\subsection{Silver-Pohlig-Hellman Algorithm}
+
+假如$p$是一个大素数，然而$p-1$的素因子都相对较、小。
+
+\begin{equation}
+    a^x\equiv b\pmod{p}
+\end{equation}
+
+假如$GF(p)$的原根是$g$，那么$a\equiv g^i\pmod{p},b\equiv g^j\pmod{p}$，其中$i,j\in\{1,p-1\}$，带入上面的方程有$g^{xi}\equiv g^j\pmod{p}$，那么一定有$xi\equiv j\pmod{\varphi(p)=p-1}$，即$x=i^{-1}j\pmod{\prod_k p_k^{\alpha_k}}$，也就是如何解$i,j$，即$g^i\equiv a\pmod{p}$。
+
+现在我们考虑$p-1=q^n$，假如
+
+\begin{equation}
+    x\equiv x_0+x_1q+\cdots+x_{n-1}q^{n-1}\pmod{q^n}
+\end{equation}
+
+\begin{equation}
+    g^x\equiv a\pmod{p}
+\end{equation}
+
+那么
+
+
+\begin{equation}
+    \begin{aligned}
+        a^{q^{n-1}}&\equiv(g^x)^{q^{n-1}}\\
+        &=(g^{x_0+x_1q+\cdots+x_{n-1}q^{n-1}})^{q^{n-1}}\\
+        &=(g^{q^{n-1}})^{x_0}\pmod{p}
+    \end{aligned}
+\end{equation}
+
+从而转化为一个求$x_0$的离散对数问题，假如使用大步小步解出$x_0$后
+
+\begin{equation}
+    \begin{aligned}
+        a^{q^{n-2}}&\equiv (g^x)^{q^{n-2}}\\
+        &=(g^{x_0+x_1q+\cdots+x_{n-1}q^{n-1}})^{q^{n-2}}\\
+        &=(g^{x_0q^{n-2}+ x_1q^{n-1}})\pmod{p}\\
+        \Longleftrightarrow
+        (g^{q^{n-1}})^{x_1}&\equiv ((g^{-x_0}a)^{q^{n-2}})\pmod{p}\\
+    \end{aligned}
+\end{equation}
+
+这又是一个新的求$x_1$的离散对数问题，复杂度为$O(n\sqrt{q})$，以此类推求出$x_i (0\le i<n)$
+
+对于$N=\varphi(p)=p-1=\prod_k p_k^{\alpha_k}$，我们需要求$x\equiv \log_a{b}\pmod{\varphi(p)=N=p-1}$，可以先求$x\equiv \log_a{b}\pmod{p}$，然后用 CRT。所以复杂度大约$\mathcal{O} (\sum_{k}\alpha_k\sqrt{p_k})$
+
+下面给出解$a^x\equiv b\pmod{q}$算法的步骤，即解$x\equiv \log_a{b}\pmod{\varphi(q)}$
+
+\begin{itemize}
+    \item 分解$q-1=\prod_kp_k^{\alpha_k}$
+    \item 对于分解结果中的因子$p^{\alpha}$，对于$x\equiv \log_a{b}\pmod{p^{\alpha}}$ (为方便，下标$k$均省略)，假设
+    \begin{equation}
+        x\equiv x_0+x_1p+\cdots+x_{\alpha-1}p^{{\alpha-1}}\pmod{p^{\alpha-1}},~(0\le x_i < p)
+    \end{equation}
+
+    \begin{itemize}
+        \item 预处理计算，$r_{p_i,j}=a^{j\cdot\frac{q-1}{p}}\pmod{q},0\le j\le p_i$
+        \item 计算$x$
+            \begin{itemize}
+            \item $b_0=b$，寻找满足$b_1^{(q-1)/p}\equiv r_{p,j}\pmod{q}$的$j$，那么$x_0=j$
+            \item $b_1=b\cdot a^{-x_0}$，寻找满足$b_1^{(q-1)/p^2}\equiv r_{p,j}\pmod{q}$的$j$，那么$x_1=j$
+            \item $b_2=b\cdot a^{-x_0-x_1p}$，寻找满足$b_2^{(q-1)/p^2}\equiv r_{p,j}\pmod{q}$的$j$，那么$x_2=j$
+            \item 类比，得到$x_i$
+            \end{itemize}
+        \item 通过 CRT 组合$x\equiv \log_a{b}\pmod{p_k^{\alpha_k}}$
+    \end{itemize}
+    
+\end{itemize}
+
+这里有两个具体的手算的例子，\href{https://blog.csdn.net/oampamp1/article/details/104061969}{\color{blue}例1}、\href{https://risencrypto.github.io/PohligHellman/}{\color{blue}例2}
+
+下面给出枚举$r_{p,j}$的理由，假如$x_0,\cdots,x_{i-1}$已知
+
+\begin{equation}
+    \begin{aligned}
+        (b)^{\frac{q-1}{p^{i+1}}}                              & \equiv (a^{x_0+\cdots+x_{\alpha-1}p^{{\alpha-1}}})^{\frac{q-1}{p^i}}                            \\
+                                                               & =(a^{x_0+\cdots+x_{i-1}p^{{i-1}}})^{\frac{q-1}{p^{i+1}}}\cdot a^{x_i\cdot\frac{q-1}{p}}\pmod{q} \\
+        \Longleftrightarrow
+        (b\cdot a^{x_0+\cdots+x_{i-1}p^{i-1}})^{(q-1)/p^{i+1}} & \equiv a^{x_i\cdot\frac{q-1}{p}}\pmod{q}
+    \end{aligned}
+\end{equation}
+然后需要用解$x_i$，所以需要预处理，这里的$a^{(q-1)/p}$相当于上面大步小步法里的$a$，当然最好使用大步小步解这个，但是看了一些博客包括书里面，预处理计算$r_{p,j}$枚举$j$都是 0 到 p，这是$\mathcal{O}(p)$的
+
+需要注意，如果模数不是一个素数，可能也是可以的，这里关键的是我们需要使用费马小定理去掉底数$a$的指数上的多余的多项式
+
+另外上面考虑的是对于$a^x\equiv b~(\mathrm{mod}~p)$，其中$a$恰好是模$p$的原根，这是最简单的情况，对于一般的情况下我们需要求出$a,b$用原根$g$的多少次幂表示（也就是最上面 4.2 说的$i,j$）。
+
+\subsection{Index Calculus for Discrete Logarithms}
+
+\href{https://www.csa.iisc.ac.in/~chandan/courses/CNT/notes}{\color{blue} Index Calculus Method}
+
+这个链接里面的 lecture 21 是讲这个算法的。
+
+需要求$a^x\equiv b\pmod{p}$，假设有一个平滑参数$y$，$p_1,\cdots,p_k$是小于$y$的素数，然后选取一个$\alpha \in[0,p-2]$，计算$a^{\alpha}\pmod{p}$，将这个结果用素因子表示，如果它能用小于$y$的素数完全分解，那就乘$a^{\alpha}$是$y-smooth$的，如果它不是$y-smooth$的就重新随机一个$\alpha$。假设$a^{alpha}\pmod{p}=\prod p_i^{e_i}$
+
+\begin{equation}
+    \alpha \equiv e_1 \log_a{p_1} +\cdots+e_{k}\log_a{p_k}\pmod{p-1}
+\end{equation}
+
+$\log_a{p_1},\cdots,\log_a{p_k}$都是不知道的，如果得到足够多这种关于$\log_a{p_i}$的方程（最好的情况
+
+就是刚好$k$个），那么就可以解出来$\log_a{p_i}$。现在随机选择$\beta\in[0,p-2]$，计算$a^{\beta} b\pmod{p}$的结果，然后用小于$y$的素数分解得到
+
+\begin{equation}
+    \beta + \log_ab \equiv f_1log_a{p_1}+\cdots+f_k\log_k{p_k}\pmod{p-1}
+\end{equation}
+
+上面的等式里面只有$\log_ab$未知
+
+\subsection{The Elliptic Curve Discrete Logarithm Problem}
+
+在$P$的生成群$<P>$上，阶为$n$，给定$P、D$，求$x$使得$xP=D$，相当于解$x=\log_PD$
+
+\subsubsection{Shanks’ Baby-Step Giant-Step Algorithm}
+
+大步小步法一般简写$BSGS$，类似与$Z_p$中的$BSGS$
+
+设
+
+\begin{equation}
+    x=s\left\lfloor n\right\rfloor + d, (0 < d < \left\lfloor n\right\rfloor) 
+\end{equation}
+
+那么$D-dP=s\left\lfloor n\right\rfloor P$，其中$d$是小步，$s$是大步，因为它成了一个关于$n$的系数，然后枚举$d和s$即可
+
+\subsubsection{Silver-Pohlig-Hellman Algorithm}
+
+将$xP=D$视作解$x=\log_PD\pmod{n}$的问题即可，点之间加法视作乘法，乘以常数$c$视作幂，一样的做法
+
+这里有篇文章讲的比较好 \href{http://koclab.cs.ucsb.edu/teaching/ecc/project/2015Projects/Sommerseth+Hoeiland.pdf}{\color{blue} Pohlig-Hellman Applied in Elliptic Curve Cryptography}
+
+\section{解同余方程}
+
+\subsection{三次方根}
+
+\begin{equation}
+    x^3\equiv a\pmod{p}
+\end{equation}
+
+\begin{enumerate}
+    \item 当$a=0$，解为$x\equiv 0\pmod{p}$
+    \item 当$a\neq 0$
+    \begin{enumerate}
+        \item 若$p=2$，$a$一定等于 1，则解必定为$x\equiv 1\pmod{2}$
+        \item 若$p$为奇素数，则$(a,p)=1$，设$p$的最小原根为g，则存在$t,s\in[0,\varphi(p)-1]$，满足
+        \begin{align}
+            a\equiv g^t\pmod{p}\\
+            x\equiv g^s\pmod{p}\\
+        \end{align}
+        所以$3s\equiv t\pmod{\varphi(p)=p-1}$，该同余式未知数是$s$，$t$是求离散对数，有解的充要条件是$(3,p-1)\mid t$，解得$s$即可
+    \end{enumerate}
+\end{enumerate}
+
+举例
+
+\begin{equation}
+    x^3\equiv 26\pmod{41}
+\end{equation}
+
+$g=6,\varphi(41)=40,t=17,s=19\Rightarrow x\equiv 34\pmod{41}$
+
+\begin{equation}
+    x^3\equiv 1\pmod{7}
+\end{equation}
+
+$g=3,\varphi(7)=6,t=0,s=0,2,4\Rightarrow x\equiv 1,2,4\pmod{7}$
+
+$\textbf{这个计算方法适用于$n$次剩余}$
+
+\subsection{平方根}
+
+\begin{equation}
+    x^2\equiv a\pmod{p}
+\end{equation}
+
+https://chenyangwang.gitbook.io/mathematical-base-for-information-safety/er-ci-tong-yu-shi-he-ping-fang-sheng-yu/mo-ping-fang-gen
+
+https://oi-wiki.org/math/number-theory/quad-residue/
+
+\href{https://blog.arpe1s.xyz/posts/2021/01/rth_root/}{link1}
+
+\href{https://bbs.emath.ac.cn/thread-15822-1-1.html/
+}{link2}
+
+\subsubsection{模 4k + 3 平方根}
+
+如果$p\equiv 3\mod{4}$
+
+\begin{equation}
+    \begin{aligned}
+        \left(a^{(p+1)/4}\right)^2&\equiv a^{(p+1)/2}\\
+        &\equiv x^{p+1}\\
+        &\equiv x^2\cdot x^{p-1}\\
+        &\equiv x^2\pmod{p}\\
+    \end{aligned}
+\end{equation}
+
+所以$x\equiv a^{(p+1)/4}\pmod{p}$为一个解
+
+\subsection{一些例子}
+
+求解
+
+\begin{align*}
+    2x^7&\equiv 5\pmod{11}\\
+    \Longleftrightarrow
+    \log_2 2 + 7\log_2{x}&\equiv \log_25\pmod{10}\\
+    \Longleftrightarrow
+    1+7\log_2{x}&\equiv 4\pmod{10}\\
+    \Longleftrightarrow
+    \log_2x&\equiv 9\pmod{10}
+\end{align*}
+
+注意我们需要先求出$\log_2 2, \log_2 5$的值，模数很小的话可以直接枚举。
+
+\section{超几何式}
+
+\subsection{离散求和}
+
+需要求
+
+\begin{equation}
+    \sum f(k) = g(k)+C
+\end{equation}
+
+如果有$\Delta g(k)=f(k)=g(k+1)-g(k)$
+
+那么
+
+\begin{equation}
+    \sum f(k)=\sum f(k)\delta k=g(k)+C
+\end{equation}
+
+问题是如何求$g$ http://yyy.is-programmer.com/posts/205150.html
+
+\section{特殊的数}
+
+\subsection{斯特林数}
+
+https://zhuanlan.zhihu.com/p/350774728
+
+\section{裴蜀定理}
+
+若 $(a,b)=1$，则 存在正整数 $x,y$ 使 $ax+by=1$
+
+1. 若 $(a,b)=1$，则 $(a^i,b^j)=1$，对任意 $i,j$
+
+\subsection{一些其他结论}
+
+1. $\gcd(a_m,a_n)=a_{\gcd(m,n)}$
+
+\section{一些site}
+
+1. https://mathmu.github.io/MTCAS/Doc.html （计算机代数）
+
+
+\section{Reference}
+
+1. https://www.luogu.com.cn/blog/luogu/latex
+
+2. [Carmichael function[卡迈克尔函数相关性质]](https://blog.csdn.net/AdijeShen/article/details/108476229)
+
+3. http://gotonsb-numbertheory.blogspot.com/2014/06/primitive-roots.html
+
+4. https://chaoli.club/index.php/2756/0（连分数入门）
+
+5. https://crypto.stanford.edu/pbc/notes/contfrac/pell.html（Pell 方程）
+
+6. https://math.uchicago.edu/~may/VIGRE/VIGRE2008/REUPapers/Yang.pdf （Pell 方程和连分数）
+
+7. https://trizenx.blogspot.com/2018/10/continued-fraction-factorization-method.html （CFRAC code）
+
+8. https://bbs.pediy.com/thread-224471.htm（二次筛法）
+
+9. \href{https://mathmu.github.io/MTCAS/doc/IntegerFactorization.html#sec8}{整数因子分解}
+
+\end{document}
