@@ -1,0 +1,217 @@
+% !TEX program = pdflatex
+\documentclass{tufte-handout}
+
+\title{\centering A classical introduction to modern number theory}
+\author{I'm the author}
+
+
+\date{\today} % without \date command, current date is supplied
+
+%\geometry{showframe} % display margins for debugging page layout
+
+\usepackage{graphicx} % allow embedded images
+  \setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+\usepackage{amsmath}  % extended mathematics
+\usepackage{amssymb}  % extended math symbol collection
+\usepackage{booktabs} % book-quality tables
+\usepackage{units}    % non-stacked fractions and better unit spacing
+\usepackage{multicol} % multiple column layout facilities
+\usepackage{lipsum}   % filler text
+\usepackage{fancyvrb} % extended verbatim environments
+  \fvset{fontsize=\normalsize}% default font size for fancy-verbatim environments
+
+% Standardize command font styles and environments
+\newcommand{\doccmd}[1]{\texttt{\textbackslash#1}}% command name -- adds backslash automatically
+\newcommand{\docopt}[1]{\ensuremath{\langle}\textrm{\textit{#1}}\ensuremath{\rangle}}% optional command argument
+\newcommand{\docarg}[1]{\textrm{\textit{#1}}}% (required) command argument
+\newcommand{\docenv}[1]{\textsf{#1}}% environment name
+\newcommand{\docpkg}[1]{\texttt{#1}}% package name
+\newcommand{\doccls}[1]{\texttt{#1}}% document class name
+\newcommand{\docclsopt}[1]{\texttt{#1}}% document class option name
+\newenvironment{docspec}{\begin{quote}\noindent}{\end{quote}}% command specification environment
+
+% Standardize command for math 
+\newcommand{\Z}{\mathbb{Z}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% add numbers to chapters, sections, subsections
+\setcounter{secnumdepth}{2}
+\usepackage{xcolor}
+\definecolor{g1}{HTML}{077358}
+\definecolor{g2}{HTML}{00b096}
+% chapter format  %(if you use tufte-book class)
+%\titleformat{\chapter}%
+%{\huge\rmfamily\itshape\color{red}}% format applied to label+text
+%{\llap{\colorbox{red}{\parbox{1.5cm}{\hfill\itshape\huge\color{white}\thechapter}}}}% label
+%{2pt}% horizontal separation between label and title body
+%{}% before the title body
+%[]% after the title body
+
+% section format
+\titleformat{\section}%
+{\normalfont\Large\itshape\color{g1}}% format applied to label+text
+{\llap{\colorbox{g1}{\parbox{1.5cm}{\hfill\color{white}\thesection}}}}% label
+{1em}% horizontal separation between label and title body
+{}% before the title body
+[]% after the title body
+
+% subsection format
+\titleformat{\subsection}%
+{\normalfont\large\itshape\color{g2}}% format applied to label+text
+{\llap{\colorbox{g2}{\parbox{1.5cm}{\hfill\color{white}\thesubsection}}}}% label
+{1em}% horizontal separation between label and title body
+{}% before the title body
+[]% after the title body
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{color-tufte}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+\maketitle% this prints the handout title, author, and date
+
+\begin{abstract}
+\noindent
+A simple notes template. Inspired by Tufte-\LaTeX class and beautiful notes by \begin{verbatim*}
+	https://github.com/abrandenberger/course-notes
+\end{verbatim*}
+\end{abstract}
+
+%\printclassoptions
+
+\section{Groups}\label{sec:groups}
+
+\subsection{Laws of Composition}
+
+
+\begin{problem}
+	Let $a, b\in S$, assume operation of S is associative, and its identity is $e$. If $a$ is left inverse of $b$, does this imply that $a$ is right inverse of $b$?
+\end{problem}
+
+\begin{proof}
+	Suppose $b$ has left inverse $a$ and right inverse $c$: $ab = e, bc = e$ but $a\neq c$. Then $ae = a = a(bc)=(ab)c=c$, which is a contradiction.
+\end{proof}
+
+\begin{enumerate}
+	\item If $la=e,ar=e$ (it imply that a has both left and right inverse), then $l=r$.
+	\item If $a$ is invertible, its inverse is unique.
+	\item Inverse multipy in the opposite order: $(ab)^{-1}=b^{-1}a^{-1}$
+	\item An element $a$ may have a left inverse or a right inverse, though it is not invertible.
+\end{enumerate}
+
+The last statement is unique and interesting.
+
+\marginnote[1cm]{Consider how to prove this lemma.}
+\begin{lemma}
+	Every nonzero integer can be written as a product of primes.
+\end{lemma}
+
+\marginnote[1cm]{Easy to prove.}
+\begin{lemma}
+	If $a,b \in \Z$ and $b>0$, there exist $q,r\in \Z$ such that $a=qb+r$ with $0\le r < b$.
+\end{lemma}
+
+\marginnote[1cm]{We often see $(a,b)=d$, it means $(a,b)=(d)$ in fact.}
+
+\begin{definition}
+\lipsum[1][0-10]
+\end{definition}
+
+\begin{definition}%%  [can be kept empty]
+	Here's is the beautiful Schr\"odinger equation
+	\[ i\hbar {\frac {\partial }{\partial t}}\Psi (x,t)=
+	\left[-{\frac {\hbar ^{2}}{2m}}{\frac {\partial ^{2}}{\partial x^{2}}}+V(x,t)\right]\Psi (x,t)\]
+\end{definition}
+
+\subsection{Groups and Subgroups}
+
+A group is a set $G$ together with a law of composition that has the following properties:
+
+\begin{enumerate}
+	\item associative, $(ab)c=a(bc)$ for all $a,b,c\in G$
+	\item identity element $e$, $ea=ae=a$ for all $a\in G$
+	\item for all $a\in G$, $a$ has a inverse $b$, such that $ab=ba=1$
+\end{enumerate}
+
+An $abelian group$ is a group whose law of composition is commutative. For example, the set of nonzero real numbers forms an abelian group under multiplication, and the set of all real numbers forms a abelian group under addition.
+
+\begin{proposition}[\textbf{Cancellation Law}]
+	Let $a,b,c$ be elements of a group $G$ whose law of composition is written multiplicatively. If $ab=ac$ or if $ba=ca$, then $b=c$. If $ab=a$ or if $ba=a$, then b=1.
+\end{proposition}
+
+\begin{proof}
+	Multipy both sides of $ab=ac$ on the left by $a^{-1}$ to obtain $b=c$. The other proofs are analogous. 
+\end{proof}
+
+\begin{proposition}
+	Let $\langle x\rangle$ be the cyclic subgroup of a group $G$ generated by an element $x$, and let $S$ denote the set of integers $k$ such that $x^k=1$.
+	\begin{enumerate}
+		\item The set $S$ is a subgroup of the additive group $\Z^{+}$.
+		\item  
+	\end{enumerate}
+\end{proposition}
+
+
+\begin{enumerate}
+	\item The $n\times n$ general linear group is the group of all invertible $n\times n$ matrices. It is denoted by $GL_n = {n\times n~\mathrm{invertible matrices A}}$. $GL_n(\mathbb{R}), GL_n(\mathbb{C})$ indicate matrices units are real or complex number. If all matrices of the group have determinant 1, then it's called the special linear group, it's a subgroup of $GL_n$, it's denoted by $SL_n$.
+	\item $S_n$ is the group of permutations of $\{1, 2,\cdots,n\}$, sometimes it's called the symmetric group. The symmetric group $S_n$ is a finite group of order $n!$.
+\end{enumerate}
+
+The permutations of a set ${a, b}$ of two elements are the identity and the transposition. It's a group of order two. Notice the difference between this set and $S_2$, especially definition of $S_n$.
+
+Every group $G$ has two obvious subgroups: the group $G$ itself, and the trivial subgroup that consists of the identity element alone.
+
+\subsection{Subgroups of the Additive Group of Integers}
+
+Let $a$ be an integer different from 0. We denote the subset of $\mathbb{Z}$ that consists of all multiples of $a$ by $\mathbb{Z}a$: 
+\begin{equation}
+	\Z a =\{n\in Z\mid n=ka~\text{for some k in } \Z\}.
+\end{equation}
+
+\begin{theorem}
+	Let $S$ be a subgroup of additive group $\Z^{+} (\mathrm{or}~(\Z, +))$. Either $S$ is the trivial subgroup ${0}$, or else it has the form $\Z a$, where $a$ is the smallest positive integer in $S$.
+\end{theorem}
+
+$Za\cap Zb=Zm, m=\mathrm{lcm}(a, b)$, and $Za + Zb=Za\cup Zb=Zn, n = \gcd(a, b)$
+
+\subsection{Cycle Groups}
+
+$\langle x \rangle$ is a cyclic subgroup of a group $G$,
+
+\subsection{Headings}\label{sec:headings}
+\marginnote{\begin{proof}[Proof (Theorem 1.1)] 
+		
+		\lipsum[1][1-3]\end{proof}}
+\begin{theorem}%%  [can be kept empty]
+	\lipsum[1][1-3] %% for dummy text
+\end{theorem}
+
+\begin{lemma}%%  [can be kept empty]
+	\lipsum[1][1-3] %% for dummy text
+	
+\end{lemma}
+\begin{proof}
+	\lipsum[1][1-5]
+\end{proof}
+
+%\marginnote{\begin{proof}\lipsum[1][1-3]\end{proof}}
+
+\begin{corollary}%%  [can be kept empty]
+	\lipsum[1][1-3] %% for dummy text
+\end{corollary}
+
+\begin{proposition}
+	\lipsum[1][1-3] %% for dummy text
+\end{proposition}
+\begin{problem}
+	\lipsum[1][1-2]
+\end{problem}
+
+\begin{proof}
+	\lipsum*[1]
+\end{proof}
+
+
+\end{document}
