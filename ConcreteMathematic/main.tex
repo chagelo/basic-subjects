@@ -1,0 +1,80 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[UTF8]{ctex}
+% Set page size and margins
+% Replace `letterpaper' with `a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{color}
+
+\renewcommand{\theequation}{\arabic{section}.\arabic{equation}}
+\newcommand{\setParDis}{\setlength {\parskip} {0.3cm} }
+\newcommand{\nident}{\setlength{\parindent}{0pt}}
+
+
+
+% \title{Your Paper}
+% \author{You}
+
+\begin{document}
+
+\setParDis
+% \nident
+
+\section{母函数与幂级数}
+
+定义 
+
+\begin{equation}
+    \begin{aligned}
+        F(x)&=\sum_{n=1}^{\infty}f_nx^n\\
+        G(x)&=\sum_{n=1}^{\infty}g_nx^n
+    \end{aligned}
+\end{equation}
+
+那么
+
+\begin{equation}
+    F(x)G(x)=\sum_{n=0}^{\infty}\Bigl(\sum_{k=0}^nf_kg_{n-k}\Bigr)x^n
+\end{equation}
+
+这个式子非常非常的有用
+
+比如令$F(x)=G(x)=\sum_{n=0}x^n$，那么$F^2(x)=\sum_{n=0}^{\infty}\Bigl(\sum_{k=0}^n\Bigr)x^n=\sum_{n=0}^{\infty}nx^n$。
+
+需要注意里面的卷积下标一定从 0 开始（因为是卷积），外面的不一定，比如可以定理 $F(x)=\sum_{n=1}x^n$。
+
+1. $\Bigl(\sum_{n=0}x^n\Bigr)^2=\sum_{n=0}^{\infty}\Bigl(\sum_{k=0}^n\Bigr)x^n$
+
+2. $\Bigl(\sum_{n=0}a_nx^n\Bigr)\Bigl(\sum_{n=0}x^n\Bigr)=\sum_{n=0}\Bigl(\sum_{k=0}^na_n\Bigr)x^n$
+
+3. 
+
+\begin{equation}
+    \begin{aligned}
+        \frac{1}{(1-x)^n}&=\sum_{n = 0}^{\infty}\binom{n+m-1}{m-1}z^n\\
+        (1+x)^k&=\sum_{n=0}\binom{k}{n}x^n\\
+        \frac1{\sqrt{1-4x}}&=\sum_{n=0}\binom{-\frac12}{n}(-4x)^n=\sum_{n=0}\binom{2n}{n}x^n\\
+    \end{aligned}
+\end{equation}
+
+所以就会有很多有意思的结论，比如 $1/\sqrt{1-4x}=\sum_{n=0}^{\infty}\binom{-\frac12}{n}(-4x)^n$
+
+\section{一些site}
+
+1. https://mathmu.github.io/MTCAS/Doc.html （计算机代数）
+
+
+\section{Reference}
+
+
+9. \href{https://mathmu.github.io/MTCAS/doc/IntegerFactorization.html#sec8}{整数因子分解}
+
+\end{document}
